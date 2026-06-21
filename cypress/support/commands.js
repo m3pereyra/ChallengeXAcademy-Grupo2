@@ -1,25 +1,33 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// Abre la Home (usa el baseUrl definido en cypress.config.js).
+Cypress.Commands.add('openHome', () => {
+  cy.visit('/')
+})
+
+
+// El sitio usa una barra de navegación <nav class="navbar"> (no <header>).
+Cypress.Commands.add('verifyBaseLayout', () => {
+  cy.get('body').should('be.visible').and('not.be.empty')
+  cy.get('nav').should('be.visible')
+  // El pie de página existe aunque esté debajo del fold.
+  cy.get('footer, .footer, [class*="footer" i]').first().should('exist')
+})
+
+// Hace click en un link del menú de navegación según su texto.
+// Los links del menú son <a class="nav-link" href="#..."> dentro del <nav>.
+Cypress.Commands.add('clickHeaderLink', (label) => {
+  cy.get('nav')
+    .contains('a', label)
+    .should('be.visible')
+    .click()
+})
+
+// Localiza el input asociado a un texto/label cercano y lo deja seleccionable.
+Cypress.Commands.add('getInputNearText', (text) => {
+  cy.contains(text)
+    .should('be.visible')
+    .parent()
+    .find('input')
+    .first()
+    .should('be.visible')
+})
