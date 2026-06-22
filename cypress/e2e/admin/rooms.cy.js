@@ -4,7 +4,7 @@ describe('Rooms', () => {
     cy.contains('Rooms').click()
   })
 
-  it.skip('Crear habitación con datos válidos', () => {
+  it('Crear habitación con datos válidos', () => {
     cy.get('[data-testid="roomName"]').type('666')
     cy.get('#type').select('Twin')
     cy.get('#accessible').select('true')
@@ -15,7 +15,7 @@ describe('Rooms', () => {
       // Validar que seguimos en la pantalla de Rooms
   cy.url({ timeout: 10000 }).should('include', '/admin/rooms')
   }),
-it.skip('Crear habitación sin nombre', () => {  
+it('Crear habitación sin nombre', () => {  
   cy.get('#type').select('Single')
   cy.get('#accessible').select('true')
   cy.get('#roomPrice').type('100')
@@ -29,7 +29,7 @@ it.skip('Crear habitación sin nombre', () => {
     .should('be.visible')
     .and('contain.text', 'Room name must be set')
 }),
-it.skip('Crear habitación con precio inválido', () => {  
+it('Crear habitación con precio inválido', () => {  
   cy.get('[data-testid="roomName"]').type('666')
   cy.get('#type').select('Single')
   cy.get('#accessible').select('true')
@@ -70,6 +70,21 @@ it('Editar habitación existente', () => {
   cy.contains('123').should('be.visible')
   cy.contains('Nueva descripción').should('be.visible')
   cy.contains('Radio').should('be.visible')
+
+
+
+}),
+it('Eliminar habitación existente', () => {
+cy.get('[data-testid="roomlisting"]').then(($roomsBefore) => {
+  const countBefore = $roomsBefore.length
+
+  // eliminar la primera habitación
+  cy.get('[data-testid="roomlisting"]').first().find('.fa.fa-remove.roomDelete').click()
+
+  // validar que ahora hay una menos
+  cy.get('[data-testid="roomlisting"]').should('have.length', countBefore - 1)
+})
+
 
 
 
