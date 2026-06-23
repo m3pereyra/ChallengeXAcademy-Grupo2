@@ -1,0 +1,15 @@
+{
+  "guest": {
+    "firstname": "Ariel",
+    "lastname": "Diaz",
+    "email": "ariel.diaz@example.com",
+    "phone": "1122334455667"
+  },
+  "contact": {
+    "name": "Ariel Diaz",
+    "email": "ariel.diaz@example.com",
+    "phone": "1122334455667",
+    "subject": "Consulta de disponibilidad",
+    "message": "Hola, quisiera consultar la disponibilidad de habitaciones para el proximo fin de semana. Muchas gracias."
+  }
+}
