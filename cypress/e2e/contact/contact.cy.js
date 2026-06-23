@@ -1,6 +1,6 @@
 describe('Formulario de Contacto', () => {
-    // Corrijo error 418 de react (BUG!)
-    Cypress.on('uncaught:exception', (err, runnable) => {
+    // Corregir error 418 de React (BUG)
+    Cypress.on('uncaught:exception', (err) => {
         if (err.message.includes('Minified React error #418')) {
             return false;
         }
@@ -11,7 +11,7 @@ describe('Formulario de Contacto', () => {
         cy.get(':nth-child(5) > .nav-link').click();
     });
 
-    it.skip('Envío de formulario de contacto con datos válidos y mostrar confirmación', () => {
+    it('Envío de formulario de contacto con datos válidos y mostrar confirmación', () => {
         cy.fixture('contact.json').then((data) => {
             cy.get('[data-testid="ContactName"]').type(data.nombre);
             cy.get('[data-testid="ContactEmail"]').type(data.email);
@@ -31,7 +31,7 @@ describe('Formulario de Contacto', () => {
         });
     });
 
-    it.skip('Verificar el envio del formulario vacio', () => {
+    it('Verificar el envío del formulario vacío', () => {
         cy.get('.d-grid > .btn').click();
         cy.get('.alert').should('be.visible');
 
@@ -42,7 +42,7 @@ describe('Formulario de Contacto', () => {
         });
     });
 
-    it.skip('Validacion de campo de texto del formulario', () => {
+    it('Validación de campo de texto del formulario', () => {
         cy.fixture('contact.json').then((data) => {
             cy.get('[data-testid="ContactName"]').type(data.nombre);
             cy.get('[data-testid="ContactEmail"]').type(data.email);
@@ -56,7 +56,7 @@ describe('Formulario de Contacto', () => {
         });
     });
 
-    it('Validacion campo Subject', () => {
+    it('Validación campo Subject', () => {
         cy.fixture('contact.json').then((data) => {
             cy.get('[data-testid="ContactName"]').type(data.nombre);
             cy.get('[data-testid="ContactEmail"]').type(data.email);
@@ -70,7 +70,7 @@ describe('Formulario de Contacto', () => {
         });
     });
 
-    it('Validacion campo Name', () => {
+    it('Validación campo Name', () => {
         cy.fixture('contact.json').then((data) => {
             cy.get('[data-testid="ContactName"]').type(data.nombreChar);
             cy.get('[data-testid="ContactEmail"]').type(data.email);
