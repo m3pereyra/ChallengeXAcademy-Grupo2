@@ -11,7 +11,6 @@ Cypress.on('uncaught:exception', (err) => {
 */
 
 import './commands'
-
 // Handler global para uncaught exceptions
 Cypress.on('uncaught:exception', (err) => {
   // Ignorar solo el error minificado de React #418
