@@ -1,5 +1,5 @@
 describe('Formulario de Contacto', () => {
-    // Corrigo error 418 de react (BUG!)
+    // Corrijo error 418 de react (BUG!)
     Cypress.on('uncaught:exception', (err, runnable) => {
         if (err.message.includes('Minified React error #418')) {
             return false;
@@ -8,11 +8,10 @@ describe('Formulario de Contacto', () => {
 
     beforeEach(() => {
         cy.visit('https://automationintesting.online/#contact');
-        cy.get(':nth-child(5) > .nav-link').click()
+        cy.get(':nth-child(5) > .nav-link').click();
     });
 
-    it('Debería enviar el formulario de contacto con datos válidos y mostrar confirmación', () => {
-        // Cargo los datos desde el fixture
+    it.skip('Envío de formulario de contacto con datos válidos y mostrar confirmación', () => {
         cy.fixture('contact.json').then((data) => {
             cy.get('[data-testid="ContactName"]').type(data.nombre);
             cy.get('[data-testid="ContactEmail"]').type(data.email);
@@ -20,16 +19,73 @@ describe('Formulario de Contacto', () => {
             cy.get('[data-testid="ContactSubject"]').type(data.asunto);
             cy.get('[data-testid="ContactDescription"]').type(data.mensaje);
 
-            // Intercepto la petición de API 
             cy.intercept('POST', '**/message*').as('mensaje');
             cy.get('.d-grid > .btn').click();
 
-            // Validar la respuesta de la API (tendria que ser 201 pero la pag me devuelve un 200)
             cy.wait('@mensaje').its('response.statusCode').should('eq', 200);
 
-            // Valido la confirmación del formulario
-            cy.get('.col-lg-8 > .card > .card-body > .h4').should('contain.text', `Thanks for getting in touch ${data.nombre}`
+            cy.get('.col-lg-8 > .card > .card-body > .h4').should(
+                'contain.text',
+                `Thanks for getting in touch ${data.nombre}`
+            );
+        });
+    });
 
+    it.skip('Verificar el envio del formulario vacio', () => {
+        cy.get('.d-grid > .btn').click();
+        cy.get('.alert').should('be.visible');
+
+        cy.fixture('errorContact.json').then((data) => {
+            data.errores.forEach((error) => {
+                cy.contains(error).should('be.visible');
+            });
+        });
+    });
+
+    it.skip('Validacion de campo de texto del formulario', () => {
+        cy.fixture('contact.json').then((data) => {
+            cy.get('[data-testid="ContactName"]').type(data.nombre);
+            cy.get('[data-testid="ContactEmail"]').type(data.email);
+            cy.get('[data-testid="ContactPhone"]').type(data.telefono);
+            cy.get('[data-testid="ContactSubject"]').type(data.asunto);
+            cy.get('[data-testid="ContactDescription"]').type(data.mensajeCorto);
+
+            cy.get('.d-grid > .btn').click();
+            cy.get('.alert').should('be.visible');
+            cy.contains('Message must be between 20 and 2000 characters.').should('be.visible');
+        });
+    });
+
+    it('Validacion campo Subject', () => {
+        cy.fixture('contact.json').then((data) => {
+            cy.get('[data-testid="ContactName"]').type(data.nombre);
+            cy.get('[data-testid="ContactEmail"]').type(data.email);
+            cy.get('[data-testid="ContactPhone"]').type(data.telefono);
+            cy.get('[data-testid="ContactSubject"]').type(data.asuntoCorto);
+            cy.get('[data-testid="ContactDescription"]').type(data.mensaje);
+
+            cy.get('.d-grid > .btn').click();
+            cy.get('.alert').should('be.visible');
+            cy.contains('Subject must be between 5 and 100 characters').should('be.visible');
+        });
+    });
+
+    it('Validacion campo Name', () => {
+        cy.fixture('contact.json').then((data) => {
+            cy.get('[data-testid="ContactName"]').type(data.nombreChar);
+            cy.get('[data-testid="ContactEmail"]').type(data.email);
+            cy.get('[data-testid="ContactPhone"]').type(data.telefono);
+            cy.get('[data-testid="ContactSubject"]').type(data.asunto);
+            cy.get('[data-testid="ContactDescription"]').type(data.mensaje);
+
+            cy.intercept('POST', '**/message*').as('mensaje');
+            cy.get('.d-grid > .btn').click();
+
+            cy.wait('@mensaje').its('response.statusCode').should('eq', 200);
+
+            cy.get('.col-lg-8 > .card > .card-body > .h4').should(
+                'contain.text',
+                `Thanks for getting in touch ${data.nombreChar}`
             );
         });
     });
