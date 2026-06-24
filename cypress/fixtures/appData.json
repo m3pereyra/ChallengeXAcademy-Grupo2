@@ -1,0 +1,22 @@
+{
+  "site": {
+    "name": "Shady Meadows",
+    "bookingHash": "#booking",
+    "amenitiesHash": "#amenities"
+  },
+  "headerNavigation": [
+    { "label": "Rooms", "expectedUrlPart": "#rooms" },
+    { "label": "Booking", "expectedUrlPart": "#booking" },
+    { "label": "Amenities", "expectedUrlPart": "#amenities" },
+    { "label": "Location", "expectedUrlPart": "#location" },
+    { "label": "Contact", "expectedUrlPart": "#contact" },
+    { "label": "Admin", "expectedUrlPart": "/admin" }
+  ],
+  "viewports": [
+    { "name": "desktop", "width": 1366, "height": 768 },
+    { "name": "tablet horizontal", "width": 1024, "height": 768 },
+    { "name": "tablet vertical", "width": 768, "height": 1024 },
+    { "name": "smartphone vertical", "width": 390, "height": 844 },
+    { "name": "smartphone horizontal", "width": 844, "height": 390 }
+  ]
+}
