@@ -6,14 +6,14 @@ Automation project developed for the XAcademy QA Automation Challenge.
 
 ## 👥 Team Members
 
-| 👤 Participant |
-|---|
-| Ariel Diaz |
-| Braian Carrizo |
-| Diego Matias Barberis Bestani |
-| Floriana Vosahlo |
-| Julian Chaves |
-| Marcelo Pereyra |
+| 👤 Participant | 📧 Email |
+|---|---|
+| Ariel Diaz | arieldiaz05@gmail.com |
+| Braian Carrizo | braiancarrizo245@gmail.com |
+| Diego Matias Barberis Bestani | diegoexaz@gmail.com |
+| Floriana Vosahlo | floriana_24_6@hotmail.com |
+| Julian Chaves | Julianichaves@hotmail.com |
+| Marcelo Pereyra | m3pereyra@gmail.com |
 
 ---
 
