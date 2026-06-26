@@ -15,7 +15,7 @@ describe('API-Habitaciones', () => {
     })
   })
 
-  // 2) Espiar la llamada que hace la Home al cargar (sin pegarle a la API).
+  // 2) Ver la llamada que hace la Home al cargar (sin pegarle a la API).
   it('La Home consulta /api/room al cargar y responde 200', () => {
     cy.intercept('GET', '**/api/room*').as('getRooms')
 
