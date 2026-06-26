@@ -37,7 +37,7 @@ describe('Home', () => {
     cy.get('body').should('contain', 'Welcome')
   })
 
-  it('TC-006_Verificar botón Book Now', () => {
+  it('TC-005_Verificar botón Book Now', () => {
     cy.fixture('appData').then((data) => {
       // Visible, con cursor de tipo "mano", y redirige a la sección Booking.
       cy.contains('a, button', 'Book Now')
