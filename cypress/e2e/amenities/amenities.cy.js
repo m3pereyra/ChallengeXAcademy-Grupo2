@@ -3,12 +3,13 @@
 // Caso TC-030:Módulo Amenities (Ariel Diaz)
 // Web bajo prueba: https://automationintesting.online/
 //
-// NOTA SOBRE EL BUG:
+// NOTA:
 // TC-030 valida el comportamiento ESPERADO: al hacer click en "Amenities" se
 // debe navegar y mostrar la sección con sus complementos de cortesía.
 // BUG-003: la sección no existe, por lo que este test fallará de forma
 // intencional y deja documentado el defecto en la corrida.
-
+// NO SE DEBE AUTOMATIZAR
+/*
 describe('Amenities', () => {
   beforeEach(() => {
     cy.openHome()
@@ -27,3 +28,4 @@ describe('Amenities', () => {
     })
   })
 })
+*/
