@@ -1,12 +1,7 @@
 /// <reference types="cypress" />
 
 // Web bajo prueba: https://automationintesting.online/
-//
-// NOTA SOBRE LOS BUGS:
-// TC-006 y TC-007 validan el comportamiento ESPERADO. Correcto: el calendario
-// debe bloquear las fechas anteriores a la actual. Como el sitio tiene esos defectos
-// (BUG-001 y BUG-002), estos dos tests fallarán de forma intencional y dejan
-// documentado el bug en la corrida.
+
 
 describe('Home', () => {
   beforeEach(() => {
@@ -42,7 +37,7 @@ describe('Home', () => {
     cy.get('body').should('contain', 'Welcome')
   })
 
-  it('TC-005-a_Verificar botón Book Now', () => {
+  it('TC-006_Verificar botón Book Now', () => {
     cy.fixture('appData').then((data) => {
       // Visible, con cursor de tipo "mano", y redirige a la sección Booking.
       cy.contains('a, button', 'Book Now')
