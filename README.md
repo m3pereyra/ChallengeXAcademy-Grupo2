@@ -49,3 +49,11 @@ Clone the repository:
 ```bash
 git clone https://github.com/m3pereyra/QAAutomation2026-Cypress.git
 then execute npm install
+
+---
+
+## 🔌 API Testing (Postman)
+
+Las pruebas de API se encuentran en la carpeta `postman-tests`.  
+Archivo: `ShadyMeadows_API_Tests.postman_collection.json`  
+Este archivo puede importarse en Postman para ejecutar los casos de prueba de la API.
