@@ -1,0 +1,64 @@
+{
+  "info": {
+    "_postman_id": "d50adf0a-7915-4f22-aaa5-8578fbee5627",
+    "name": "Shady Meadows B&B - API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48305651"
+  },
+  "item": [
+    {
+      "name": "TC API-001 - Crear reserva exitosa",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code es 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"La respuesta tiene bookingid\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.bookingid).to.exist;\r",
+              "});\r",
+              "\r",
+              "pm.test(\"El nombre es correcto\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.firstname).to.eql(\"Juan\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"roomid\": 1,\r\n  \"firstname\": \"Juan\",\r\n  \"lastname\": \"Perez\",\r\n  \"depositpaid\": true,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2026-09-01\",\r\n    \"checkout\": \"2026-09-03\"\r\n  },\r\n  \"email\": \"juan@gmail.com\",\r\n  \"phone\": \"54351262487200\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://automationintesting.online/api/booking",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "booking"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
