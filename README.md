@@ -57,3 +57,4 @@ Clone the repository:
 git clone https://github.com/m3pereyra/QAAutomation2026-Cypress.git
 npm install
 ```
+# Challenge-XAcademy2026
